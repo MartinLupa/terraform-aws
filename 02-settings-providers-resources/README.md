@@ -20,3 +20,12 @@ For some providers like AWS, Terraform could theoretically use something like AW
 Therefore, for mapping configuration to resources in the real world, Terraform uses its own state structure.
 
 Terraform expects that each remote object is bound to only one resource instance in the configuration. If a remote object is bound to multiple resource instances, the mapping from configuration to the remote object in the state becomes ambiguous, and Terraform may behave unexpectedly. Terraform can guarantee a one-to-one mapping when it creates objects and records their identities in the state. When importing objects created outside of Terraform, you must make sure that each distinct object is imported to only one resource instance.
+
+## Remote state storage
+Source: https://developer.hashicorp.com/terraform/language/state/remote
+
+By default, Terraform stores state locally in a file named terraform.tfstate. When working with Terraform in a team, use of a local file makes Terraform usage complicated because each user must make sure they always have the latest state data before running Terraform and make sure that nobody else runs Terraform at the same time.
+
+With remote state, Terraform writes the state data to a remote data store, which can then be shared between all members of a team. Terraform supports storing state in HCP Terraform, HashiCorp Consul, Amazon S3, Azure Blob Storage, Google Cloud Storage, Alibaba Cloud OSS, and more.
+
+Remote state is implemented by a `backend` or by HCP Terraform, both of which you can configure in your configuration's root module.
