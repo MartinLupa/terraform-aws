@@ -13,18 +13,4 @@ provider "aws" {
   # Arguments
   profile = "default" # AWS Credentials Profile configured on your local desktop terminal  $HOME/.aws/credentials
   region  = "eu-central-1"
-
-  # Static credentials
-  # access_key = "xxx"
-  # secret_key = "yyy"
-}
-
-# Resource Block
-resource "aws_instance" "ec2demo" {
-  ami           = "ami-0910ce22fbfa68e1d" # Amazon Linux in eu-west-1, update as per your region
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "ec2demo"
-  }
 }
